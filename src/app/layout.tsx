@@ -51,6 +51,8 @@ export const viewport = {
   themeColor: "#0f172a",
 };
 
+import Head from "next/head";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -58,6 +60,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/nk.ico" />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
         style={{
