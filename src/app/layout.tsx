@@ -41,11 +41,14 @@ export const metadata: Metadata = {
     images: ["/vercel.svg"],
   },
   metadataBase: new URL("https://nishant-ml-portfolio.com"),
-  themeColor: "#0f172a",
   robots: "index, follow",
   icons: {
     icon: "/nk.ico",
   },
+};
+
+export const viewport = {
+  themeColor: "#0f172a",
 };
 
 export default function RootLayout({
