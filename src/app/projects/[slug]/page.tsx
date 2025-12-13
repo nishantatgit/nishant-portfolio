@@ -1,6 +1,13 @@
 import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
 
+// Required for static export: generateStaticParams for all project slugs
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
 type Props = {
   params: { slug: string };
 };

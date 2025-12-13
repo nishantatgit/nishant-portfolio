@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
-  experimental: {
-    turbopack: {
-      root: ".",
-    },
-  },
+  // Removed invalid experimental.turbopack config for Azure Static Web Apps compatibility
+  // experimental: {
+  //   turbopack: {
+  //     root: ".",
+  //   },
+  // },
   output: "export",
   images: { unoptimized: true },
 };
