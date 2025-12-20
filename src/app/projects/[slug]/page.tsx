@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
+import { BulletListItem } from "@/components/BulletListItem";
 
 // Required for static export: generateStaticParams for all project slugs
 export async function generateStaticParams() {
@@ -7,10 +8,6 @@ export async function generateStaticParams() {
     slug: project.slug,
   }));
 }
-
-type Props = {
-  params: { slug: string };
-};
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -62,39 +59,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <section className="mb-10">
         <h2 className="text-xl font-semibold mb-4">Production / Engineering</h2>
         <ul className="ml-6 text-neutral-700">
-  <li className="flex items-center gap-3 mb-2">
-    <span className="flex items-center justify-center" style={{ width: 20, height: 20 }}>
-      <span className="bg-muted rounded-full flex items-center justify-center" style={{ width: 18, height: 18 }}>
-        <svg width="12" height="12" viewBox="0 0 12 12" className="block" aria-hidden="true">
-          <circle cx="6" cy="6" r="6" fill="currentColor" className="text-muted" />
-          <text x="6" y="9" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold" fontFamily="sans-serif">&#8594;</text>
-        </svg>
-      </span>
-    </span>
-    <span className="align-middle">Inference design: See repo for details</span>
-  </li>
-  <li className="flex items-center gap-3 mb-2">
-    <span className="flex items-center justify-center" style={{ width: 20, height: 20 }}>
-      <span className="bg-muted rounded-full flex items-center justify-center" style={{ width: 18, height: 18 }}>
-        <svg width="12" height="12" viewBox="0 0 12 12" className="block" aria-hidden="true">
-          <circle cx="6" cy="6" r="6" fill="currentColor" className="text-muted" />
-          <text x="6" y="9" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold" fontFamily="sans-serif">&#8594;</text>
-        </svg>
-      </span>
-    </span>
-    <span className="align-middle">Latency & cost: {project.metrics.match(/Latency|inference/i) ? project.metrics : "See highlights"}</span>
-  </li>
-  <li className="flex items-center gap-3 mb-2">
-    <span className="flex items-center justify-center" style={{ width: 20, height: 20 }}>
-      <span className="bg-muted rounded-full flex items-center justify-center" style={{ width: 18, height: 18 }}>
-        <svg width="12" height="12" viewBox="0 0 12 12" className="block" aria-hidden="true">
-          <circle cx="6" cy="6" r="6" fill="currentColor" className="text-muted" />
-          <text x="6" y="9" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold" fontFamily="sans-serif">&#8594;</text>
-        </svg>
-      </span>
-    </span>
-    <span className="align-middle">Monitoring: Monitoring ideas in repo</span>
-  </li>
+  <BulletListItem>Inference design: See repo for details</BulletListItem>
+  <BulletListItem>Latency & cost: {project.metrics.match(/Latency|inference/i) ? project.metrics : "See highlights"}</BulletListItem>
+  <BulletListItem>Monitoring: Monitoring ideas in repo</BulletListItem>
 </ul>
       </section>
 

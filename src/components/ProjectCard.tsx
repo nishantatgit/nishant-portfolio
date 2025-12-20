@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Project } from "@/content/projects";
+import { Button } from "./Button";
 
 type Props = {
   project: Project;
@@ -28,34 +29,18 @@ export function ProjectCard({ project }: Props) {
       </div>
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 mt-4">
         {project.demoUrl && (
-          <Link
-            href={project.demoUrl}
-            className="inline-block rounded-full bg-accent text-accent-foreground px-5 py-2 text-base font-semibold shadow hover:bg-accent/90 hover:shadow-accent/40 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent no-underline"
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Button href={project.demoUrl} external className="inline-block text-base">
             Demo
-          </Link>
+          </Button>
         )}
         {project.repoUrl && (
-          <Link
-            href={project.repoUrl}
-            className="inline-block rounded-full border border-accent text-accent px-5 py-2 text-base font-semibold hover:bg-accent/10 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent no-underline"
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Button href={project.repoUrl} external variant="secondary" className="inline-block text-base">
             Repo
-          </Link>
+          </Button>
         )}
-        <Link
-          href={`/projects/${project.slug}`}
-          className="inline-block rounded-full border border-muted text-muted px-5 py-2 text-base font-semibold hover:bg-muted/10 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-muted no-underline"
-          style={{ textDecoration: "none" }}
-        >
+        <Button href={`/projects/${project.slug}`} className="inline-block text-base border-muted text-muted hover:bg-muted/10 bg-transparent shadow-none">
           Details
-        </Link>
+        </Button>
       </div>
     </div>
   );

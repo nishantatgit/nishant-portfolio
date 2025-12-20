@@ -16,15 +16,10 @@ export const profile = {
     "Python / PyTorch / Sklearn",
     "Deployment experience",
   ],
-  summary: [
-    "Background as a Full-Stack Engineer",
-    "Why ML: Impact + interest",
-    "How I’m proving it: projects, evaluation, systems thinking",
-  ],
   transitionStory: [
     "Background as a Full-Stack Engineer",
     "Why ML (impact + interest)",
-    "How I’m proving it (projects, evaluation, systems thinking)",
+    "How I'm proving it (projects, evaluation, systems thinking)",
   ],
   skills: {
     machineLearning: [
