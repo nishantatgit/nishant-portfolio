@@ -6,11 +6,11 @@ import { projects } from "@/content/projects";
 import { useState } from "react";
 
 const TAGS = [
-  "NLP",
-  "Tabular",
-  "Time-Series",
-  "LLM",
-  "RAG"
+  "nlp",
+  "tabular",
+  "time-series",
+  "llm",
+  "rag"
 ];
 
 export default function ProjectsPage() {

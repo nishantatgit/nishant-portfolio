@@ -1,3 +1,5 @@
+import { Button } from "@/components/Button";
+
 export default function ResumePage() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-12 bg-background text-foreground">
@@ -15,13 +17,9 @@ export default function ResumePage() {
         </div>
       </section>
       <section>
-        <a
-          href="/resume.pdf"
-          download
-          className="inline-block px-6 py-3 rounded-full bg-accent text-accent-foreground font-semibold shadow hover:bg-accent/90 hover:shadow-accent/40 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent"
-        >
+        <Button href="/resume.pdf" download className="inline-block px-6 py-3">
           Download Resume
-        </a>
+        </Button>
       </section>
     </main>
   );

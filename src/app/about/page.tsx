@@ -1,4 +1,6 @@
 import { profile } from "@/content/profile";
+import { BulletListItem } from "@/components/BulletListItem";
+import { Button } from "@/components/Button";
 
 export default function AboutPage() {
   return (
@@ -10,39 +12,9 @@ export default function AboutPage() {
           I started my career as a Full-Stack Engineer, building robust web applications and scalable systems. My passion for impact and curiosity about data-driven solutions led me to transition into Machine Learning, where I now focus on applied ML and productionizing models end-to-end.
         </p>
         <ul className="ml-6 text-muted">
-  <li className="flex items-center gap-3 mb-2">
-    <span className="flex items-center justify-center" style={{ width: 20, height: 20 }}>
-  <span className="bg-muted rounded-full flex items-center justify-center" style={{ width: 18, height: 18 }}>
-    <svg width="12" height="12" viewBox="0 0 12 12" className="block" aria-hidden="true">
-      <circle cx="6" cy="6" r="6" fill="currentColor" className="text-muted" />
-      <text x="6" y="9" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold" fontFamily="sans-serif">&#8594;</text>
-    </svg>
-  </span>
-</span>
-    <span className="align-middle">Full-Stack background: system design, APIs, cloud, frontend & backend</span>
-  </li>
-  <li className="flex items-center gap-3 mb-2">
-    <span className="flex items-center justify-center" style={{ width: 20, height: 20 }}>
-  <span className="bg-muted rounded-full flex items-center justify-center" style={{ width: 18, height: 18 }}>
-    <svg width="12" height="12" viewBox="0 0 12 12" className="block" aria-hidden="true">
-      <circle cx="6" cy="6" r="6" fill="currentColor" className="text-muted" />
-      <text x="6" y="9" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold" fontFamily="sans-serif">&#8594;</text>
-    </svg>
-  </span>
-</span>
-    <span className="align-middle">Why ML: Impact, automation, and solving real-world problems</span>
-  </li>
-  <li className="flex items-center gap-3 mb-2">
-    <span className="flex items-center justify-center" style={{ width: 20, height: 20 }}>
-  <span className="bg-muted rounded-full flex items-center justify-center" style={{ width: 18, height: 18 }}>
-    <svg width="12" height="12" viewBox="0 0 12 12" className="block" aria-hidden="true">
-      <circle cx="6" cy="6" r="6" fill="currentColor" className="text-muted" />
-      <text x="6" y="9" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold" fontFamily="sans-serif">&#8594;</text>
-    </svg>
-  </span>
-</span>
-    <span className="align-middle">How: 4 end-to-end ML projects, metrics-driven, production mindset</span>
-  </li>
+  <BulletListItem>Full-Stack background: system design, APIs, cloud, frontend & backend</BulletListItem>
+  <BulletListItem>Why ML: Impact, automation, and solving real-world problems</BulletListItem>
+  <BulletListItem>How: 4 end-to-end ML projects, metrics-driven, production mindset</BulletListItem>
 </ul>
       </section>
       <section className="mb-8">
@@ -65,34 +37,10 @@ export default function AboutPage() {
       <section>
         <h2 className="text-xl font-semibold mb-2 text-foreground">Links</h2>
         <div className="flex gap-4 flex-wrap">
-          <a
-            href="/contact"
-            className="px-5 py-2 rounded-full bg-accent text-accent-foreground font-semibold shadow hover:bg-accent/90 hover:shadow-accent/40 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent"
-          >
-            Contact
-          </a>
-          <a
-            href={profile.contact.linkedin}
-            className="px-5 py-2 rounded-full bg-accent text-accent-foreground font-semibold shadow hover:bg-accent/90 hover:shadow-accent/40 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            href={profile.contact.github}
-            className="px-5 py-2 rounded-full bg-accent text-accent-foreground font-semibold shadow hover:bg-accent/90 hover:shadow-accent/40 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            href="/resume"
-            className="px-5 py-2 rounded-full bg-accent text-accent-foreground font-semibold shadow hover:bg-accent/90 hover:shadow-accent/40 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-accent"
-          >
-            Resume
-          </a>
+          <Button href="/contact">Contact</Button>
+          <Button href={profile.contact.linkedin} external>LinkedIn</Button>
+          <Button href={profile.contact.github} external>GitHub</Button>
+          <Button href="/resume">Resume</Button>
         </div>
       </section>
     </main>

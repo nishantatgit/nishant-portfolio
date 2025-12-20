@@ -12,14 +12,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_TITLE = "Nishant Kumar — Full-Stack → ML Engineer Portfolio";
+const SITE_DESCRIPTION = "Transitioning from Full-Stack Engineer to Machine Learning Engineer. Explore 4 end-to-end ML case studies, engineering strengths, and a recruiter-friendly, metrics-driven portfolio.";
+
 export const metadata: Metadata = {
-  title: "Nishant Kumar — Full-Stack → ML Engineer Portfolio",
-  description:
-    "Transitioning from Full-Stack Engineer to Machine Learning Engineer. Explore 4 end-to-end ML case studies, engineering strengths, and a recruiter-friendly, metrics-driven portfolio.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   openGraph: {
-    title: "Nishant Kumar — Full-Stack → ML Engineer Portfolio",
-    description:
-      "Transitioning from Full-Stack Engineer to Machine Learning Engineer. Explore 4 end-to-end ML case studies, engineering strengths, and a recruiter-friendly, metrics-driven portfolio.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: "https://nishant-ml-portfolio.com",
     siteName: "Nishant Kumar ML Portfolio",
     images: [
@@ -35,9 +36,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nishant Kumar — Full-Stack → ML Engineer Portfolio",
-    description:
-      "Transitioning from Full-Stack Engineer to Machine Learning Engineer. Explore 4 end-to-end ML case studies, engineering strengths, and a recruiter-friendly, metrics-driven portfolio.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: ["/vercel.svg"],
   },
   metadataBase: new URL("https://nishant-ml-portfolio.com"),
