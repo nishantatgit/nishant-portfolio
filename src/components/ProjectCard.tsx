@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { Button } from "./Button";
+import { ArrowRight } from "lucide-react";
 
 type Props = {
   project: Project;
@@ -8,39 +9,64 @@ type Props = {
 
 export function ProjectCard({ project }: Props) {
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 shadow flex flex-col gap-6 transition-transform hover:-translate-y-1 hover:shadow-lg duration-200 h-full min-h-[340px] sm:min-h-[420px] w-full">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <h2 className="text-2xl font-bold tracking-tight text-foreground font-sans">{project.title}</h2>
-        <div className="flex gap-2">
+    <div className="group bg-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+      {/* Header with Title and Tags */}
+      <div className="space-y-4 mb-6">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-2xl font-bold text-headline tracking-tight flex-1">
+            {project.title}
+          </h3>
+        </div>
+        <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-muted text-white px-3 py-1 rounded-full text-xs font-semibold border border-muted uppercase tracking-wide"
+              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-accent/10 text-accent border border-accent/20"
             >
               {tag}
             </span>
           ))}
         </div>
       </div>
-      <p className="text-base text-muted font-normal">{project.oneLiner}</p>
-      <div className="flex flex-wrap gap-4 text-sm text-muted">
-        <span className="bg-background border border-border rounded px-3 py-1 font-medium tracking-wide">Approach: <span className="font-semibold text-foreground">{project.methods}</span></span>
-        <span className="bg-background border border-border rounded px-3 py-1 font-medium tracking-wide">Key Metric: <span className="font-semibold text-foreground">{project.metrics}</span></span>
+
+      {/* Description */}
+      <p className="text-muted text-base leading-relaxed mb-6">
+        {project.oneLiner}
+      </p>
+
+      {/* Metadata */}
+      <div className="flex flex-col gap-3 mb-8">
+        <div className="flex items-start gap-3 text-sm">
+          <span className="text-muted-foreground font-medium min-w-[80px]">Approach:</span>
+          <span className="text-foreground font-semibold">{project.methods}</span>
+        </div>
+        <div className="flex items-start gap-3 text-sm">
+          <span className="text-muted-foreground font-medium min-w-[80px]">Key Metric:</span>
+          <span className="text-foreground font-semibold">{project.metrics}</span>
+        </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 mt-4">
-        {project.demoUrl && (
-          <Button href={project.demoUrl} external className="inline-block text-base">
-            Demo
-          </Button>
-        )}
-        {project.repoUrl && (
-          <Button href={project.repoUrl} external variant="secondary" className="inline-block text-base">
-            Repo
-          </Button>
-        )}
-        <Button href={`/projects/${project.slug}`} className="inline-block text-base border-muted text-muted hover:bg-muted/10 bg-transparent shadow-none">
-          Details
-        </Button>
+
+      {/* Actions - pushed to bottom */}
+      <div className="mt-auto pt-6 border-t border-border">
+        <div className="flex flex-wrap gap-3">
+          {project.demoUrl && (
+            <Button href={project.demoUrl} external variant="primary" size="sm">
+              Demo
+            </Button>
+          )}
+          {project.repoUrl && (
+            <Button href={project.repoUrl} external variant="outline" size="sm">
+              Repo
+            </Button>
+          )}
+          <Link
+            href={`/projects/${project.slug}`}
+            className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-accent-hover transition-colors group/link"
+          >
+            View Details
+            <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </div>
   );

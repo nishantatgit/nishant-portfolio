@@ -1,16 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 const SITE_TITLE = "Nishant Kumar — Full-Stack → ML Engineer Portfolio";
 const SITE_DESCRIPTION = "Transitioning from Full-Stack Engineer to Machine Learning Engineer. Explore 4 end-to-end ML case studies, engineering strengths, and a recruiter-friendly, metrics-driven portfolio.";
@@ -48,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0f172a",
+  themeColor: "#2563eb",
 };
 
 export default function RootLayout({
@@ -59,12 +50,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
-        style={{
-          fontFamily: "var(--font-geist-sans), Inter, ui-sans-serif, system-ui, sans-serif"
-        }}
+        className="antialiased bg-background text-foreground min-h-screen flex flex-col font-sans"
       >
-        {children}
+        <Header />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
