@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
 import { BulletListItem } from "@/components/BulletListItem";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
 
 // Required for static export: generateStaticParams for all project slugs
 export async function generateStaticParams() {
@@ -9,13 +12,49 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
+
+  if (!project) {
+    return {};
+  }
+
+  return buildMetadata({
+    title: `${project.title} - ML Project - Nishant Kumar`,
+    description: project.oneLiner,
+    path: `/projects/${project.slug}`,
+    keywords: [...project.tags, "machine learning project", "ml case study"],
+    type: "article",
+  });
+}
+
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return notFound();
 
+  const projectStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.oneLiner,
+    url: `${SITE_URL}/projects/${project.slug}`,
+    keywords: project.tags,
+    about: ["Machine Learning", "Applied ML", "Production Engineering"],
+    author: {
+      "@type": "Person",
+      name: "Nishant Kumar",
+    },
+  };
+
   return (
     <main className="max-w-3xl mx-auto px-4 py-16 bg-background">
+      <JsonLd data={projectStructuredData} />
       <h1 className="text-4xl font-bold mb-4 font-sans">{project.title}</h1>
       <p className="text-lg text-neutral-700 mb-8">{project.oneLiner}</p>
 

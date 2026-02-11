@@ -1,0 +1,37 @@
+---
+title: "Scaling ML Inference Without Overengineering"
+description: "A pragmatic architecture for stable latency and predictable cost"
+date: "2024-02-04"
+tags: ["System Design", "Inference", "Scalability"]
+featured: true
+published: true
+---
+
+## Problem
+
+Inference traffic was spiky, and p95 latency degraded sharply during peak usage.
+
+## Constraints
+
+- Limited platform team bandwidth
+- Cost ceilings per request
+- Need for rapid rollback when model regressions appear
+
+## Architecture
+
+1. Async queue for burst absorption
+2. Autoscaled inference workers with warm pools
+3. Layered caching for repeated queries
+4. Canary deployment for safer model rollouts
+
+## Trade-offs
+
+- Warm pools improve latency but increase idle cost
+- Aggressive caching reduces cost but risks stale outputs
+- Canary strategy slows rollout but protects quality
+
+## Results
+
+- p95 latency improved from 920ms to 510ms
+- Compute cost per 1k requests dropped by 23%
+- Rollback time reduced to under 5 minutes

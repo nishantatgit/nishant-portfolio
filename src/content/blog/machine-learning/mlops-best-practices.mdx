@@ -1,0 +1,42 @@
+---
+title: "MLOps Best Practices for Small Teams"
+description: "How to ship reliable ML systems without heavyweight infrastructure"
+date: "2024-01-28"
+tags: ["MLOps", "Deployment", "Monitoring"]
+featured: false
+published: true
+---
+
+## Context
+
+Most early-stage teams can’t afford a complex platform, but they still need dependable model delivery.
+
+## Principles
+
+1. Keep one clear training pipeline per model
+2. Version data, code, and model artifacts together
+3. Prefer simple deployment paths first
+
+## Minimal Stack
+
+- Experiment tracking: lightweight metadata + artifact store
+- Serving: FastAPI + containerized inference
+- Monitoring: request volume, latency, drift indicators
+
+## Practical Checks
+
+### Before deployment
+
+- Reproducible run ID
+- Evaluation on holdout set
+- Rollback-ready image
+
+### After deployment
+
+- p95 latency and error rate alerts
+- Data drift snapshots
+- Weekly failure case review
+
+## Outcome
+
+Using this approach, we cut incident recovery time by 40% and reduced model release friction across the team.

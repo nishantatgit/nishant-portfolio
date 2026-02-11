@@ -1,0 +1,46 @@
+---
+title: "Designing a Production RAG Pipeline"
+description: "Lessons from building a retrieval-augmented generation system at scale"
+date: "2024-01-15"
+tags: ["RAG", "LLM", "Production ML"]
+featured: true
+published: true
+---
+
+## Introduction
+
+Building a production RAG system taught me that chunking strategy often matters more than embedding model choice.
+
+## The Problem
+
+Users needed to query 100k+ internal documents with high accuracy and low latency.
+
+## Approach
+
+1. **Chunking**: fixed-size (512 tokens) vs semantic chunking
+2. **Embeddings**: API models vs open-source alternatives
+3. **Retrieval**: BM25 baseline → dense retrieval → hybrid retrieval
+
+## Code Example
+
+```python
+def chunk_documents(docs, chunk_size=512, overlap=50):
+    chunks = []
+    for doc in docs:
+        step = chunk_size - overlap
+        for i in range(0, len(doc), step):
+            chunks.append(doc[i : i + chunk_size])
+    return chunks
+```
+
+## Results
+
+- **Top-1 Accuracy**: 84% (vs 67% baseline)
+- **p95 Latency**: 450ms
+- **Cost**: $0.02 per query
+
+## Key Lessons
+
+1. Semantic chunking improved accuracy by 12%
+2. Hybrid retrieval beat dense-only
+3. Caching reduced API costs by 60%

@@ -1,9 +1,29 @@
+import type { Metadata } from "next";
 import { profile } from "@/content/profile";
 import { Mail, Linkedin, Github } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Contact - Nishant Kumar",
+  description:
+    "Contact Nishant Kumar for machine learning engineering roles, collaboration opportunities, and project discussions.",
+  path: "/contact",
+  keywords: ["contact ml engineer", "hire machine learning engineer", "nishant kumar contact"],
+});
 
 export default function ContactPage() {
+  const contactStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Nishant Kumar",
+    url: `${SITE_URL}/contact`,
+    description: "Get in touch for ML engineering opportunities and collaboration.",
+  };
+
   return (
     <div className="bg-background">
+      <JsonLd data={contactStructuredData} />
       {/* Hero Section */}
       <section className="border-b border-border bg-gradient-to-b from-surface/50 to-background">
         <div className="max-w-4xl mx-auto px-6 py-16 lg:py-24">

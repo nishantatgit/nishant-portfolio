@@ -1,10 +1,31 @@
+import type { Metadata } from "next";
 import { profile } from "@/content/profile";
 import { BulletListItem } from "@/components/BulletListItem";
 import { Button } from "@/components/Button";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "About - Nishant Kumar",
+  description:
+    "Learn about Nishant Kumar's journey from full-stack engineering to applied machine learning and production ML.",
+  path: "/about",
+  keywords: ["about ml engineer", "full-stack to ml journey", "machine learning engineer profile"],
+});
 
 export default function AboutPage() {
+  const aboutStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Nishant Kumar",
+    url: `${SITE_URL}/about`,
+    description:
+      "Professional narrative and timeline of transition from full-stack engineer to ML engineer.",
+  };
+
   return (
     <div className="bg-background">
+      <JsonLd data={aboutStructuredData} />
       {/* Hero Section */}
       <section className="border-b border-border bg-gradient-to-b from-surface/50 to-background">
         <div className="max-w-4xl mx-auto px-6 py-16 lg:py-24">

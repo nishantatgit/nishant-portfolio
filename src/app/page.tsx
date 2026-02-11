@@ -1,14 +1,48 @@
+import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { BulletListItem } from "@/components/BulletListItem";
 import { Button } from "@/components/Button";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Nishant Kumar — Full-Stack to ML Engineer",
+  description:
+    "Production-focused ML engineer portfolio: 4 end-to-end projects, metrics-driven case studies, and full-stack engineering strength.",
+  path: "/",
+  keywords: [
+    "machine learning engineer portfolio",
+    "full-stack to ml transition",
+    "applied ml projects",
+    "mlops portfolio",
+  ],
+});
 
 export default function HomePage() {
   const featured = projects.filter((p) => p.featured).slice(0, 4);
+  const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Nishant Kumar — Full-Stack to ML Engineer",
+    url: SITE_URL,
+    description: profile.subtitle,
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Featured ML Projects",
+      itemListElement: featured.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${SITE_URL}/projects/${project.slug}`,
+        name: project.title,
+      })),
+    },
+  };
 
   return (
     <div className="bg-background">
+      <JsonLd data={homeStructuredData} />
       {/* Hero Section */}
       <section className="border-b border-border bg-gradient-to-b from-surface/50 to-background">
         <div className="max-w-7xl mx-auto px-6 py-20 lg:py-32">
